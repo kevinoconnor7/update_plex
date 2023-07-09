@@ -81,8 +81,9 @@ echo "${NEW_CHECKSUM}" >"${CHECKSUM_FILE}"
 echo $'  \e[39m[\e[32m++\e[39m]\e[0m Done'
 
 
+echo $'  \e[39m[**]\e[0m Checking if Plex is running now...'
 if ! util::is_plex_running; then
-  echo $'  \e[39m[**]\e[0m Waiting for startup...'
+  echo $'  \e[39m[&&]\e[0m Waiting for startup...'
   sleep 5
   if ! util::is_plex_running; then
     echo $'  [\e[1;33m!!\e[0m] Plex hasn\'t started. Sending start command...'
