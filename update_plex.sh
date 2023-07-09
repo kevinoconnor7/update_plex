@@ -48,7 +48,9 @@ echo "  Done!"
 echo "Checking if we have the latest update..."
 LAST_CHECKSUM=$(cat "${CHECKSUM_FILE}" 2>/dev/null || true)
 if [ "${DOWNLOAD_CHECKSUM}" == "${LAST_CHECKSUM}" ]; then
-	util::gentle_exit "We already have the latest update"
+	echo "We already have the latest update"
+	util::cleanup
+	exit 0
 fi
 echo "  Done"
 
@@ -62,7 +64,9 @@ echo "  Done"
 echo "Saving checksum"
 echo "${DOWNLOAD_CHECKSUM}" >"${CHECKSUM_FILE}"
 if [ $? -ne 0 ]; then
-	util::gentle_exit "Failed to save update checksum"
+	echo "Failed to save update checksum"
+	util::cleanup
+	exit 0
 fi
 echo "  Done"
 
